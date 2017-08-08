@@ -14,6 +14,7 @@ import ml.sparkling.graph.operators.OperatorsDSL._
   */
 object AppCentrality {
   val sc: SparkContext = SparkHandler.getSparkContext(appName)
+  val defaultAttribute = 1
 
   def main(args: Array[String]): Unit = {
     System.setProperty("hadoop.home.dir", Settings.winUtils)
@@ -21,14 +22,16 @@ object AppCentrality {
     val edges: RDD[Edge[Int]] =
       sc.textFile(edgesGraph).map { line =>
         val fields = line.split(" ")
-        Edge(fields(0).toLong, fields(1).toLong)
+        val output : Edge[Int] = Edge(fields(0).toLong, fields(1).toLong, defaultAttribute)
+        output
       }
 
     val graph : Graph[Any, Int] = Graph.fromEdges(edges, "defaultProperty")
+    /*graph.edges.foreach(println)
     println("num edges = " + graph.numEdges)
-    println("num vertices = " + graph.numVertices)
+    println("num vertices = " + graph.numVertices)*/
 
-    val centralityGraph: Graph[Double, _] = graph.closenessCentrality()
+    val centralityGraph: Graph[Double, _] = graph.closenessCentrality(VertexMeasureConfiguration(treatAsUndirected=true))
     centralityGraph.vertices.foreach(println)
   }
 }
