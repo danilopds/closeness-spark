@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>spark-graph</groupId>
+    <artifactId>closeness</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <spark.version>2.1.0</spark.version>
+        <scala.short.version>2.11</scala.short.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_${scala.short.version}</artifactId>
+            <version>${spark.version}</version>
+            <scope>compile</scope>
+            <!-- provided -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-graphx_${scala.short.version}</artifactId>
+            <version>${spark.version}</version>
+            <scope>compile</scope>
+            <!-- provided -->
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/ml.sparkling/sparkling-graph-operators_2.11 -->
+        <dependency>
+            <groupId>ml.sparkling</groupId>
+            <artifactId>sparkling-graph-operators_${scala.short.version}</artifactId>
+            <version>0.0.7</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>2.11.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.typesafe</groupId>
+            <artifactId>config</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+
+
+    </dependencies>
+
+
+</project>
